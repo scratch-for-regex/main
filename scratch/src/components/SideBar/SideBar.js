@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 
 import regexArray from "../../data/regexArray"
 import SideBarRow from "./SideBarRow"
-import { setRegexes } from '../actions';
+import { setRegexes } from '../../actions'
+
+import PropTypes from 'prop-types';
+
 class SideBar extends React.Component {
   static propTypes = {
     setRegexes: PropTypes.func.isRequired
@@ -30,6 +33,8 @@ class SideBar extends React.Component {
 }
 
 export default connect(
+  state => ({
+  }),
   dispatch => ({
     setRegexes: () => dispatch(setRegexes),
   }),
