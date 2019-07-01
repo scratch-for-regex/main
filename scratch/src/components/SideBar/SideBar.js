@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import regexArray from "../../data/regexArray"
 import SideBarRow from "./SideBarRow"
-import { setRegexes } from '../../actions';
-export default class SideBar extends React.Component {
+import { setRegexes } from '../actions';
+class SideBar extends React.Component {
+  static propTypes = {
+    setRegexes: PropTypes.func.isRequired
+  }
   render() {
-    setRegexes(regexArray.map((d) => (d.regex, d.summary, d.description, false)))
+    this.props.setRegexes(regexArray.map((d) => (d.regex, d.summary, d.description, false)))
     return (
       <div>
         <ul>
@@ -25,3 +29,8 @@ export default class SideBar extends React.Component {
   }
 }
 
+export default connect(
+  dispatch => ({
+    setRegexes: () => dispatch(setRegexes),
+  }),
+)(SideBar);
