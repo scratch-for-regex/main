@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 
 class RegexTextarea extends React.Component {
@@ -28,12 +28,11 @@ class RegexTextarea extends React.Component {
     }
 }
 
-export default RegexTextarea; // REMOVE once redux is in place
 
-// mstp = state => {
-//     return {
-//         text: "", // Name of property that holds text state.text
-//     }
-// }
+mstp = state => {
+    return {
+        text: "", // Name of property that holds text. "state.text" ?
+    }
+}
 
-// export default connect(mstp)(RegexTextarea);
+export default connect(mstp)(RegexTextarea);
