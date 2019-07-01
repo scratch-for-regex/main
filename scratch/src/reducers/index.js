@@ -5,4 +5,4 @@ const rootReducer = combineReducers({
   regexes: RegexReducer
 })
 
-export default rootReducer
+export default rootReducer;
