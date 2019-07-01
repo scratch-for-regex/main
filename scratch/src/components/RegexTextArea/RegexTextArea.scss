@@ -26,12 +26,13 @@
             margin-left: -100%;
         }
 
+        button {cursor: pointer;}
+
         .toggle-form {
             width: 80px;
             opacity: 0.2;
             &:hover {
                 opacity: 0.8;
-                cursor: pointer;
             }
         }
 

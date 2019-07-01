@@ -2,11 +2,17 @@ import React from "react"
 
 class TextAreaEdit extends React.Component {
     state = {
-        formOpen: false
+        formOpen: false,
     }
 
     toggleForm = () => {
-        this.setState({ formOpen: !this.state.formOpen })
+        this.setState({ formOpen: !this.state.formOpen, })
+    }
+
+    submit = e => {
+        e.preventDefault();
+        this.props.handleChanges(e);
+        this.toggleForm();
     }
 
     render() {
@@ -17,9 +23,9 @@ class TextAreaEdit extends React.Component {
                 }
             >
                 <button className="toggle-form" onClick={this.toggleForm}>
-                    Edit Text
+                    {this.state.formOpen ? "Cancel" : "Edit Text"}
                 </button>
-                <form onSubmit={this.props.submit}>
+                <form onSubmit={this.submit}>
                     <textarea
                         type="text"
                         name="text"
