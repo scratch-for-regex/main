@@ -1,37 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
+import TextAreaEdit from "./TextAreaEdit";
 
 
 class RegexTextarea extends React.Component {
     state = {
-        text: this.props.text ? this.props.text : "",
+        text: `We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.`,
     };
 
     render() {
         return (
             <div className="textarea">
-                <textarea
-                    name="text"
+                <p dangerouslySetInnerHTML={this.createMarkup()} />
+                <TextAreaEdit 
                     value={this.state.text}
-                    onChange={this.handleChanges}
-                    rows="6"
-                    cols="80"
-                />
+                    handleChanges={this.handleChanges}
+                    />
             </div>
         );
     }
-
+    
     handleChanges = e => {
         this.setState({
             [e.target.name]: e.target.value,
         })
     }
+
+    // Turns each line break into a <br /> tag using dangerouslySetInnerHTML.
+    // Use with caution.
+    createMarkup() {
+        return {__html: this.state.text.replace(/\n/g, "<br> ")}
+    }
+
+    // Regex Tester: Runs our regex code 
 }
 
 
-mstp = state => {
+const mstp = state => {
     return {
-        text: "", // Name of property that holds text. "state.text" ?
+        // regex: state.regex,
     }
 }
 
