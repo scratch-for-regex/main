@@ -1,8 +1,12 @@
 import React from "react"
 import { connect } from "react-redux"
-import { dragStart, dragEnd } from "../../actions"
+import { selectRegex } from "../../actions"
 
 class SideBarRow extends React.Component {
+    state = {
+        isDragging: false
+    }
+
     render() {
         return (
             <li
@@ -11,27 +15,32 @@ class SideBarRow extends React.Component {
                 onDragStart={this.dragStart}
                 onDragEnd={this.dragEnd}
             >
-                <p>{this.props.regex.source}</p>
-                <p>{this.props.purpose}</p>
+                <p>{this.props.regexObj.regex.source}</p>
+                <p>{this.props.regexObj.purpose}</p>
             </li>
         )
     }
 
-    dragStart = e => {
-        this.props.dragStart(this.props.id)
+    dragStart = () => {
+        this.setState({ ...this.state, isDragging: true })
     }
 
-    dragEnd = e => {
-        e.preventDefault()
-        setTimeout(() => this.props.dragEnd, 100)
+    dragEnd = event => {
+        const isSuccessfulDrop = event.dataTransfer.dropEffect === "move"
+
+        this.setState({ ...this.state, isDragging: false }, () => {
+            if (isSuccessfulDrop) {
+                this.props.selectRegex(this.props.regexObj)
+            }
+        })
     }
 }
 
-const mstp = state => {
+const mstp = () => {
     return {}
 }
 
 export default connect(
     mstp,
-    { dragStart, dragEnd }
+    { selectRegex }
 )(SideBarRow)
