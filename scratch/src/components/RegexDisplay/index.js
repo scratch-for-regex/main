@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 
-import { Dropzone } from "../shared"
+import { Dropzone, DraggableItem } from "../shared"
 import { formatRegex } from "../../selectors"
 
 const RegexDisplay = () => {
@@ -10,7 +10,17 @@ const RegexDisplay = () => {
     return (
         <div>
             <h3>Regex Display</h3>
-            <Dropzone>{formattedRegex}</Dropzone>
+            <Dropzone>
+                <ul>
+                    <DraggableItem
+                        didDrop={isSuccess =>
+                            console.log(`Drop was a success? ${isSuccess}`)
+                        }
+                    >
+                        <li>{formattedRegex}</li>
+                    </DraggableItem>
+                </ul>
+            </Dropzone>
         </div>
     )
 }
