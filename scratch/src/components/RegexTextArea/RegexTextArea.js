@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import TextAreaEdit from "./TextAreaEdit"
 import "./RegexTextArea.scss"
 
-class RegexTextarea extends React.Component {
+class RegexTextArea extends React.Component {
     state = {
         text: `We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.`,
     }
@@ -64,4 +64,4 @@ const mstp = state => {
     }
 }
 
-export default connect(mstp)(RegexTextarea)
+export default connect(mstp)(RegexTextArea)
