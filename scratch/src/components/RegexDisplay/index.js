@@ -1,27 +1,32 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import DisplayCard from "./DisplayCard"
 
-import { Dropzone, DraggableItem } from "../shared"
-import { formatRegex } from "../../selectors"
+import { Dropzone } from "../shared"
+import { formatRegex, selectedChars } from "../../selectors"
 
 const RegexDisplay = () => {
     const formattedRegex = useSelector(formatRegex)
+    const arrayRegex = useSelector(selectedChars)
 
     return (
-        <div>
-            <h3>Regex Display</h3>
-            <Dropzone>
-                <ul>
-                    <DraggableItem
-                        didDrop={isSuccess =>
-                            console.log(`Drop was a success? ${isSuccess}`)
-                        }
-                    >
-                        <li>{formattedRegex}</li>
-                    </DraggableItem>
-                </ul>
-            </Dropzone>
-        </div>
+        <Dropzone>
+            <div>
+                <h3>Regex Display</h3>
+                <p className="display-card-container">
+                    {" "}
+                    /
+                    {arrayRegex.map(regexPiece => (
+                        <DisplayCard
+                            key={regexPiece.id}
+                            regexInfo={regexPiece}
+                        />
+                    ))}
+                    /g
+                </p>
+                <p>{formattedRegex}</p>
+            </div>
+        </Dropzone>
     )
 }
 
