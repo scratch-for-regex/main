@@ -1,4 +1,4 @@
-import { SELECT_REGEX_CHAR } from "../actions"
+import { SELECT_REGEX_CHAR, REMOVE_REGEX_CHAR } from "../actions"
 
 import { characterClasses } from "../data"
 
@@ -17,6 +17,12 @@ export default (state = initialState, action) => {
                     ...state.selectedCharacters,
                     action.payload
                 ]
+            }
+
+        case REMOVE_REGEX_CHAR:
+            return {
+                ...state,
+                selectedCharacters: state.selectedCharacters.filter(regexBit => regexBit.id !== action.payload.id)
             }
 
         default:
