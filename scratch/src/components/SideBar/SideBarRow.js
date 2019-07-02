@@ -1,38 +1,26 @@
 import React from "react"
 import { connect } from "react-redux"
+
+import { DraggableItem } from "../shared"
 import { selectRegex } from "../../actions"
 
+// TODO: Refactor this into a Functional Component
 class SideBarRow extends React.Component {
-    state = {
-        isDragging: false
+    handleDidDrop = isSuccess => {
+        if (isSuccess) {
+            this.props.selectRegex(this.props.regexObj)
+        }
     }
 
     render() {
         return (
-            <li
-                className="SideBarRow"
-                draggable="true"
-                onDragStart={this.dragStart}
-                onDragEnd={this.dragEnd}
-            >
-                <p>{this.props.regexObj.regex.source}</p>
-                <p>{this.props.regexObj.purpose}</p>
-            </li>
+            <DraggableItem didDrop={this.handleDidDrop}>
+                <li className="SideBarRow">
+                    <p>{this.props.regexObj.regex.source}</p>
+                    <p>{this.props.regexObj.purpose}</p>
+                </li>
+            </DraggableItem>
         )
-    }
-
-    dragStart = () => {
-        this.setState({ ...this.state, isDragging: true })
-    }
-
-    dragEnd = event => {
-        const isSuccessfulDrop = event.dataTransfer.dropEffect === "move"
-
-        this.setState({ ...this.state, isDragging: false }, () => {
-            if (isSuccessfulDrop) {
-                this.props.selectRegex(this.props.regexObj)
-            }
-        })
     }
 }
 
