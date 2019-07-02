@@ -16,3 +16,7 @@ export const formatRegex = ({ regex }) => {
         "/" + regex.selectedCharacters.map(r => r.regex.source).join("") + "/g"
     )
 }
+
+export const draggingObj = ({regex}) => {
+    return regex.draggingObj;
+}
