@@ -53,7 +53,6 @@ class RegexTextArea extends React.Component {
     // Calls the regexTester and returns the output(formatted properly)
     createMarkup = () => {
         const regexResult = this.regexTester()
-        console.log(regexResult)
         return {
             text: { __html: regexResult.regexText.replace(/\n/g, "<br> ") },
             count: regexResult.count

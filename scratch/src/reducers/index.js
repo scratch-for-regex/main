@@ -1,9 +1,7 @@
 import { combineReducers } from "redux"
 
-import regexReducer from "./regexesReducer"
-import regexDisplayReducer from "./regexDisplayReducer"
+import regexReducer from "./regex-reducer"
 
 export default combineReducers({
-    regexes: regexReducer,
-    regexDisplay: regexDisplayReducer
+    regex: regexReducer
 })
