@@ -1,11 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
 import TextAreaEdit from "./TextAreaEdit"
+
 import "./RegexTextArea.scss"
+
+import { reduceRegex } from "../../selectors"
 
 class RegexTextArea extends React.Component {
     state = {
-        text: `We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.`,
+        text: `We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.`
     }
 
     render() {
@@ -44,23 +47,22 @@ class RegexTextArea extends React.Component {
         )
 
         // Returns an object containing the text with spans for regex highlighting, and a count for all regex matches.
-        return { regexText, count };
+        return { regexText, count }
     }
 
     // Calls the regexTester and returns the output(formatted properly)
     createMarkup = () => {
-        const regexResult = this.regexTester();
-        console.log(regexResult);
+        const regexResult = this.regexTester()
         return {
             text: { __html: regexResult.regexText.replace(/\n/g, "<br> ") },
-            count: regexResult.count,
+            count: regexResult.count
         }
     }
 }
 
 const mstp = state => {
     return {
-        // regex: state.regex,
+        regex: reduceRegex(state)
     }
 }
 

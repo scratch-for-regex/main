@@ -1,8 +1,7 @@
 import { combineReducers } from "redux"
-import RegexReducer from "./regexesReducer"
 
-const rootReducer = combineReducers({
-    regexes: RegexReducer
+import regexReducer from "./regex-reducer"
+
+export default combineReducers({
+    regex: regexReducer
 })
-
-export default rootReducer
