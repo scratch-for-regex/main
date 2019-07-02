@@ -10,7 +10,7 @@ function App() {
         <div>
             <h1>Scratch for Regex</h1>
             <RegexDisplay />
-            <SideBar className="SideBoar" />
+            <SideBar className="SideBar" />
             <RegexTextArea />
         </div>
     )
