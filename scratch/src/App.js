@@ -7,11 +7,13 @@ import RegexDisplay from "./components/RegexDisplay"
 
 function App() {
     return (
-        <div>
-            <h1>Scratch for Regex</h1>
-            <RegexDisplay />
-            <SideBar className="SideBoar" />
-            <RegexTextArea />
+        <div className="app">
+            <SideBar />
+            <div className="main-content">
+                <h1>Scratch for Regex</h1>
+                <RegexDisplay />
+                <RegexTextArea />
+            </div>
         </div>
     )
 }

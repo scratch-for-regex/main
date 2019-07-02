@@ -1,6 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 
+import { Dropzone } from "../shared"
 import { formatRegex } from "../../selectors"
 
 const RegexDisplay = () => {
@@ -9,7 +10,7 @@ const RegexDisplay = () => {
     return (
         <div>
             <h3>Regex Display</h3>
-            {formattedRegex}
+            <Dropzone>{formattedRegex}</Dropzone>
         </div>
     )
 }
