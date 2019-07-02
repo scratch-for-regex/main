@@ -1,6 +1,7 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 
+import { dropSuccess } from "../../actions"
 import { formatRegex, draggingObj } from "../../selectors"
 
 const RegexDisplay = () => {
@@ -10,16 +11,14 @@ const RegexDisplay = () => {
 
     const dropCheck = e => {
         if (draggingCard) {
-            console.log(draggingCard)
-            dispatch({
-                type: "DROP_SUCCESS",
-                payload: draggingCard
-            })
+            dispatch(dropSuccess(draggingCard))
         }
     }
 
+    const handleDraggedOver = e => e.preventDefault()
+
     return (
-        <div onDragOver={e => e.preventDefault()} onDrop={dropCheck}>
+        <div onDragOver={handleDraggedOver} onDrop={dropCheck}>
             <h3>Regex Display</h3>
             {formattedRegex}
         </div>

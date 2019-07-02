@@ -1,4 +1,9 @@
-import { SELECT_REGEX_CHAR, DRAG_START, DRAG_END } from "../actions"
+import {
+    SELECT_REGEX_CHAR,
+    DRAG_START,
+    DRAG_END,
+    DROP_SUCCESS
+} from "../actions"
 
 import { characterClasses } from "../data"
 
@@ -18,7 +23,6 @@ export default (state = initialState, action) => {
 
         case DRAG_START:
             const obj = state.characters.find(obj => obj.id === action.payload)
-            console.log(obj)
             return {
                 ...state,
                 draggingObj: obj
@@ -30,7 +34,7 @@ export default (state = initialState, action) => {
                 draggingObj: null
             }
 
-        case "DROP_SUCCESS":
+        case DROP_SUCCESS:
             // Only run this code if the obj doesn't already exist in the store
             if (
                 state.selectedCharacters.findIndex(
