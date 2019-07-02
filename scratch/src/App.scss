@@ -1,0 +1,15 @@
+.app {
+    display: flex;
+
+    .sidebar {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .main-content {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}

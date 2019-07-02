@@ -9,8 +9,8 @@ class SideBar extends React.Component {
             <div>
                 <h2>Sidebar</h2>
                 <ul>
-                    {this.props.characters.map(({ id, ...rest }) => (
-                        <SideBarRow key={id} {...rest} />
+                    {this.props.characters.map(obj => (
+                        <SideBarRow key={obj.id} {...obj} />
                     ))}
                 </ul>
             </div>
