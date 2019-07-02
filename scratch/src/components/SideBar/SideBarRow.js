@@ -5,7 +5,12 @@ import { dragStart, dragEnd } from "../../actions"
 class SideBarRow extends React.Component {
     render() {
         return (
-            <li className="SideBarRow" draggable="true" onDragStart={this.dragStart} onDragEnd={this.dragEnd}>
+            <li
+                className="SideBarRow"
+                draggable="true"
+                onDragStart={this.dragStart}
+                onDragEnd={this.dragEnd}
+            >
                 <p>{this.props.regex.source}</p>
                 <p>{this.props.purpose}</p>
             </li>
@@ -17,13 +22,16 @@ class SideBarRow extends React.Component {
     }
 
     dragEnd = e => {
-        e.preventDefault();
-        setTimeout(() => this.props.dragEnd, 100);
+        e.preventDefault()
+        setTimeout(() => this.props.dragEnd, 100)
     }
 }
 
 const mstp = state => {
-    return  {}
+    return {}
 }
 
-export default connect(mstp, { dragStart, dragEnd })(SideBarRow);
+export default connect(
+    mstp,
+    { dragStart, dragEnd }
+)(SideBarRow)

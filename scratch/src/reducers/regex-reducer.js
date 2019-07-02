@@ -5,18 +5,7 @@ import { characterClasses } from "../data"
 const initialState = {
     characters: characterClasses,
     draggingObj: null,
-    selectedCharacters: [
-        {
-            regex: /\w/,
-            purpose: "Select word",
-            acceptsInputs: false
-        },
-        {
-            regex: /\s/,
-            purpose: "Select whitespace",
-            acceptsInputs: false
-        }
-    ]
+    selectedCharacters: []
 }
 
 export default (state = initialState, action) => {
