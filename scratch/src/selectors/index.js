@@ -8,11 +8,11 @@ export const reduceRegex = ({ regex }) => {
             newRegex,
             globalModifier + ignoreCaseModifier + multilineModifier
         )
-    }, new RegExp("", "g"))
+    }, new RegExp("", "gi"))
 }
 
 export const formatRegex = ({ regex }) => {
     return (
-        "/" + regex.selectedCharacters.map(r => r.regex.source).join("") + "/g"
+        "/" + regex.selectedCharacters.map(r => r.regex.source).join("") + "/gi"
     )
 }
