@@ -5,7 +5,7 @@ export const characterClasses = [
     { id: uuid(), regex: /\d/, purpose: "Select digit", acceptsInputs: false },
     {
         id: uuid(),
-        regex: '\\s',
+        regex: /\s/,
         purpose: "Select whitespace",
         acceptsInputs: false
     },
