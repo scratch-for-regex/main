@@ -4,7 +4,6 @@ import { removeChar } from "../../actions"
 import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
-
     render() {
         return (
             <DraggableItem
@@ -15,7 +14,12 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                <span>{String(this.props.regexInfo.regex).replace(/\//g, "")}</span>
+                <span className="regex-char">
+                    {String(this.props.regexInfo.regex).replace(/\//g, "")}
+                    <div className="tooltip">
+                        {this.props.regexInfo.purpose}
+                    </div>
+                </span>
             </DraggableItem>
         )
     }
@@ -25,4 +29,7 @@ const mstp = state => {
     return {}
 }
 
-export default connect(mstp, { removeChar })(DisplayCard)
+export default connect(
+    mstp,
+    { removeChar }
+)(DisplayCard)
