@@ -2,9 +2,10 @@ import React from 'react';
 
 import regexArray from "../../data/regexArray"
 import SideBarRow from "./SideBarRow"
-
+import { setRegexes } from '../../actions';
 export default class SideBar extends React.Component {
   render() {
+    setRegexes(regexArray.map((d) => (d.regex, d.summary, d.description, false)))
     return (
       <div>
         <ul>
@@ -23,3 +24,4 @@ export default class SideBar extends React.Component {
     )
   }
 }
+
