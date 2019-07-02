@@ -8,7 +8,7 @@ import RegexDisplay from "./components/RegexDisplay"
 function App() {
     return (
         <div className="app">
-            <SideBar className="sidebar" />
+            <SideBar />
             <div className="main-content">
                 <h1>Scratch for Regex</h1>
                 <RegexDisplay />
