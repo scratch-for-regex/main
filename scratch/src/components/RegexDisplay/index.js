@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import DisplayCard from "./DisplayCard"
-
+import "./index.scss"
 import { Dropzone } from "../shared"
 import { formatRegex, selectedChars } from "../../selectors"
 
@@ -11,9 +11,9 @@ const RegexDisplay = () => {
 
     return (
         <Dropzone>
-            <div>
+            <div className="regex-display">
                 <h3>Regex Display</h3>
-                <p className="display-card-container">
+                <div className="display-card-container">
                     {" "}
                     /
                     {arrayRegex.map(regexPiece => (
@@ -23,7 +23,7 @@ const RegexDisplay = () => {
                         />
                     ))}
                     /g
-                </p>
+                </div>
                 <p>{formattedRegex}</p>
             </div>
         </Dropzone>

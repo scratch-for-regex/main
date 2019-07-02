@@ -1,0 +1,11 @@
+.regex-display {
+    box-sizing: border-box;
+    padding: 5px;
+    border: 2px solid black;
+
+    .display-card-container {
+        font-family: monospace;
+        display: flex;
+        font-size: 3rem;
+    }
+}
