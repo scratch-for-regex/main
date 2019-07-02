@@ -1,32 +1,16 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import regexArray from "../../data/regexArray"
 import SideBarRow from "./SideBarRow"
-import { setRegexes } from "../../actions"
-
-import PropTypes from "prop-types"
 
 class SideBar extends React.Component {
-    static propTypes = {
-        setRegexes: PropTypes.func.isRequired
-    }
     render() {
-        this.props.setRegexes(
-            regexArray.map(d => (d.regex, d.summary, d.description, false))
-        )
         return (
             <div>
+                <h2>Sidebar</h2>
                 <ul>
-                    {regexArray.map(d => (
-                        <li key={d.regex}>
-                            <SideBarRow
-                                regex={d.regex}
-                                summary={d.summary}
-                                description={d.description}
-                                editable={false}
-                            />
-                        </li>
+                    {this.props.characters.map(({ id, ...rest }) => (
+                        <SideBarRow key={id} {...rest} />
                     ))}
                 </ul>
             </div>
@@ -35,8 +19,6 @@ class SideBar extends React.Component {
 }
 
 export default connect(
-    state => ({}),
-    dispatch => ({
-        setRegexes: () => dispatch(setRegexes)
-    })
+    ({ regex }) => ({ characters: regex.characters }),
+    {}
 )(SideBar)
