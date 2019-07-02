@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import RegexReducer from  './regexesReducer'
+import { combineReducers } from "redux"
+import RegexReducer from "./regexesReducer"
 
 const rootReducer = combineReducers({
-  regexes: RegexReducer
+    regexes: RegexReducer
 })
 
-export default rootReducer;
+export default rootReducer
