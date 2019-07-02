@@ -17,6 +17,6 @@ export const formatRegex = ({ regex }) => {
     )
 }
 
-export const draggingObj = ({regex}) => {
-    return regex.draggingObj;
+export const draggingObj = ({ regex }) => {
+    return regex.draggingObj
 }

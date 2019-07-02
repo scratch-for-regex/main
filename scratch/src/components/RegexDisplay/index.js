@@ -10,10 +10,10 @@ const RegexDisplay = () => {
 
     const dropCheck = e => {
         if (draggingCard) {
-            console.log(draggingCard);
+            console.log(draggingCard)
             dispatch({
                 type: "DROP_SUCCESS",
-                payload: draggingCard,
+                payload: draggingCard
             })
         }
     }

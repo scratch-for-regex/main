@@ -6,7 +6,7 @@ import SideBarRow from "./SideBarRow"
 class SideBar extends React.Component {
     render() {
         return (
-            <div>
+            <div className="sidebar">
                 <h2>Sidebar</h2>
                 <ul>
                     {this.props.characters.map(obj => (
