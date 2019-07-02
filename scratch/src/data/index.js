@@ -27,12 +27,6 @@ export const characterClasses = [
         purpose: "Select what's NOT whitespace",
         acceptsInputs: false
     },
-    {
-        id: uuid(),
-        regex: /\W/,
-        purpose: "Select what's NOT a word",
-        acceptsInputs: false
-    },
     { id: uuid(), regex: /A/, purpose: "", acceptsInputs: false },
     { id: uuid(), regex: /B/, purpose: "", acceptsInputs: false },
     { id: uuid(), regex: /C/, purpose: "", acceptsInputs: false },
