@@ -4,6 +4,12 @@ import { removeChar } from "../../actions"
 import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
+    state = {
+        regexFront: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\\[(]/),
+        regexBack: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\])]/),
+        regexString: String(this.props.regexInfo.regex).replace(/\//g, "").replace(/[\\[(]/, "").replace(/[\])]/, "")
+    }
+
     render() {
         return (
             <DraggableItem
@@ -14,14 +20,46 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                <span className="regex-char">
+                {/* <span className="regex-char">
                     {String(this.props.regexInfo.regex).replace(/\//g, "")}
                     <div className="tooltip">
                         {this.props.regexInfo.purpose}
                     </div>
-                </span>
+                </span> */}
+                <form className="regex-char" onSubmit={this.submit}>
+                    <span>{this.state.regexFront ? this.state.regexFront[0] : ""}</span>
+                    <input 
+                        type="text"
+                        name="regexString"
+                        value={this.state.regexString}
+                        onChange={this.handleChanges}
+                        // readOnly={!this.props.regexInfo.acceptsInput}
+                        readOnly={false}
+                    />
+                    <span>{this.state.regexBack ? this.state.regexBack[0] : ""}</span>
+                    <div className="tooltip">
+                        {this.props.regexInfo.purpose}
+                    </div>
+                </form>
             </DraggableItem>
         )
+    }
+    handleChanges = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    submit = e => {
+        e.preventDefault()
+        if (this.state.regexString === "") {
+            this.props.removeChar(this.props.regexInfo)
+            return
+        }
+        const regArr = [this.state.regexFront || "", this.state.regexString || "", this.state.regexBack || ""]
+        console.log(regArr);
+        const regex = new RegExp(`${regArr[0] + regArr[1] + regArr[2]}`)
+        console.log(regex)
     }
 }
 
