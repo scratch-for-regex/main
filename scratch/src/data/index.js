@@ -5,7 +5,7 @@ export const characterClasses = [
     { id: uuid(), regex: /\d/, purpose: "Select digit", acceptsInputs: false },
     {
         id: uuid(),
-        regex: /\s/,
+        regex: '\\s',
         purpose: "Select whitespace",
         acceptsInputs: false
     },
@@ -68,7 +68,12 @@ export const characterClasses = [
     { id: uuid(), regex: /6/, purpose: "", acceptsInputs: false },
     { id: uuid(), regex: /7/, purpose: "", acceptsInputs: false },
     { id: uuid(), regex: /8/, purpose: "", acceptsInputs: false },
-    { id: uuid(), regex: /9/, purpose: "", acceptsInputs: false }    
+    { id: uuid(), regex: /9/, purpose: "", acceptsInputs: false },  
+    // { id: uuid(), regex: /+/, purpose: "", acceptsInputs: false }, 
+    { id: uuid(), regex: /-/, purpose: "", acceptsInputs: false },   
+    { id: uuid(), regex: /_/, purpose: "", acceptsInputs: false }, 
+    // { id: uuid(), regex: /?/, purpose: "", acceptsInputs: false }, 
+    { id: uuid(), regex: /!/, purpose: "", acceptsInputs: false },                       
         
     // { id: uuid(), regex: /()/, purpose: "Group", acceptsInputs: false },
     // {
