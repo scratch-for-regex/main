@@ -10,7 +10,6 @@ function App() {
         <div className="app">
             <SideBar />
             <div className="main-content">
-                <h1>Scratch for Regex</h1>
                 <RegexDisplay />
                 <RegexTextArea />
             </div>
