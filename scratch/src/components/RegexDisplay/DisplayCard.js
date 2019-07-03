@@ -5,9 +5,9 @@ import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
     state = {
-        regexFront: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\\[(]/),
-        regexBack: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\])]/),
-        regexString: String(this.props.regexInfo.regex).replace(/\//g, "").replace(/[\\[(]/, "").replace(/[\])]/, "")
+        regexFront: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\\{[(]/),
+        regexBack: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[}\])]/),
+        regexString: String(this.props.regexInfo.regex).replace(/\//g, "").replace(/[\\{[(]/, "").replace(/[}\])]/, "")
     }
 
     render() {
@@ -56,9 +56,9 @@ class DisplayCard extends React.Component {
             this.props.removeChar(this.props.regexInfo)
             return
         }
-        const regArr = [this.state.regexFront || "", this.state.regexString || "", this.state.regexBack || ""]
-        console.log(regArr);
-        const regex = new RegExp(`${regArr[0] + regArr[1] + regArr[2]}`)
+        const regF = this.state.regexFront ? this.state.regexFront[0] : "";
+        const regB = this.state.regexBack ? this.state.regexBack[0] : "";
+        const regex = new RegExp(`${regF + this.state.regexString + regB}`)
         console.log(regex)
     }
 }
