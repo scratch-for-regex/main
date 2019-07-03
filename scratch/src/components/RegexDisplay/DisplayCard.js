@@ -9,14 +9,14 @@ class DisplayCard extends React.Component {
     state = {
         regexFront: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
-            .match(/[\\{[(]/),  //  \ [ ( { 
+            .match(/[\\{[(]/), //  \ [ ( {
         regexBack: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .match(/[}\])]/),
         regexString: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .replace(/[\\{[(]/, "")
-            .replace(/[}\])]/, ""),
+            .replace(/[}\])]/, "")
     }
 
     render() {
@@ -29,33 +29,43 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                <form className="regex-char" onSubmit={this.submit}>
-                    <span>
-                        {this.state.regexFront ? this.state.regexFront[0] : ""}
-                    </span>
-                    <input
-                        style={{width: this.state.regexString.length * 1.65 + "rem"}}
-                        type="text"
-                        name="regexString"
-                        value={this.state.regexString}
-                        onChange={this.handleChanges}
-                        onBlur={this.reset}
-                        readOnly={!this.props.regexInfo.acceptsInputs}
-                    />
-                    <span>
-                        {this.state.regexBack ? this.state.regexBack[0] : ""}
-                    </span>
-                    <div
-                        className={this.state.error ? "tooltip off" : "tooltip"}
-                    >
-                        {this.props.regexInfo.purpose}
-                    </div>
-                </form>
+                <div className="display-card" onClick={() => this.props.setPurpose(this.props.regexInfo.purpose)}>
+                    <form className="regex-char" onSubmit={this.submit}>
+                        <span>
+                            {this.state.regexFront &&
+                            this.state.regexFront[0] !== `\\`
+                                ? this.state.regexFront[0]
+                                : ""}
+                        </span>
+                        <input
+                            style={{
+                                width:
+                                    this.state.regexString.length * 1.65 + "rem"
+                            }}
+                            type="text"
+                            name="regexString"
+                            value={this.state.regexString}
+                            onChange={this.handleChanges}
+                            onBlur={this.reset}
+                            readOnly={!this.props.regexInfo.acceptsInputs}
+                        />
+                        <span>
+                            {this.state.regexBack
+                                ? this.state.regexBack[0]
+                                : ""}
+                        </span>
+                        <div
+                            className={
+                                this.state.error ? "tooltip off" : "tooltip"
+                            }
+                        >
+                            {this.props.regexInfo.purpose}
+                        </div>
+                    </form>
+                </div>
             </DraggableItem>
         )
     }
-
-
 
     handleChanges = e => {
         this.setState({
@@ -67,12 +77,16 @@ class DisplayCard extends React.Component {
     // If the user clicks away from the input, reset it to what it originally was
     reset = e => {
         e.preventDefault()
-        setTimeout(() => this.setState({
-            regexString: String(this.props.regexInfo.regex)
-                .replace(/\//g, "")
-                .replace(/[\\{[(]/, "")
-                .replace(/[}\])]/, "")
-        }), 200)
+        setTimeout(
+            () =>
+                this.setState({
+                    regexString: String(this.props.regexInfo.regex)
+                        .replace(/\//g, "")
+                        .replace(/[\\{[(]/, "")
+                        .replace(/[}\])]/, "")
+                }),
+            200
+        )
     }
 
     submit = e => {
