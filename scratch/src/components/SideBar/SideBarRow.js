@@ -15,10 +15,10 @@ class SideBarRow extends React.Component {
     render() {
         return (
             <DraggableItem didDrop={this.handleDidDrop}>
-                <li className="SideBarRow">
-                    <p>{this.props.regexObj.regex.source}</p>
+                <div className="regex-card">
+                    <h3>{this.props.regexObj.regex.source}</h3>
                     <p>{this.props.regexObj.purpose}</p>
-                </li>
+                </div>
             </DraggableItem>
         )
     }

@@ -9,15 +9,14 @@ class DisplayCard extends React.Component {
     state = {
         regexFront: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
-            .match(/[\\{[(]/),  //  \ [ ( { 
+            .match(/[\\{[(]/), //  \ [ ( {
         regexBack: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .match(/[}\])]/),
         regexString: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .replace(/[\\{[(]/, "")
-            .replace(/[}\])]/, ""),
-        error: null
+            .replace(/[}\])]/, "")
     }
 
     render() {
@@ -30,59 +29,61 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                <form className="regex-char" onSubmit={this.submit}>
-                    <span>
-                        {this.state.regexFront ? this.state.regexFront[0] : ""}
-                    </span>
-                    <input
-                        style={{width: this.state.regexString.length * 1.65 + "rem"}}
-                        type="text"
-                        name="regexString"
-                        value={this.state.regexString}
-                        onChange={this.handleChanges}
-                        onBlur={this.reset}
-                        readOnly={!this.props.regexInfo.acceptsInputs}
-                    />
-                    <span>
-                        {this.state.regexBack ? this.state.regexBack[0] : ""}
-                    </span>
-                    <div
-                        className={this.state.error ? "tooltip off" : "tooltip"}
-                    >
-                        {this.props.regexInfo.purpose}
-                    </div>
-                    <div
-                        className={
-                            this.state.error
-                                ? "tooltip error on"
-                                : "tooltip error"
-                        }
-                    >
-                        {this.state.error}
-                    </div>
-                </form>
+                <div
+                    className="display-card"
+                    onClick={() =>
+                        this.props.setPurpose(this.props.regexInfo.purpose)
+                    }
+                >
+                    <form className="regex-char" onSubmit={this.submit}>
+                        <span>
+                            {this.state.regexFront
+                                ? this.state.regexFront[0]
+                                : ""}
+                        </span>
+                        <input
+                            style={{
+                                width:
+                                    this.state.regexString.length * 1.65 + "rem"
+                            }}
+                            type="text"
+                            name="regexString"
+                            value={this.state.regexString}
+                            onChange={this.handleChanges}
+                            onBlur={this.reset}
+                            readOnly={!this.props.regexInfo.acceptsInputs}
+                        />
+                        <span>
+                            {this.state.regexBack
+                                ? this.state.regexBack[0]
+                                : ""}
+                        </span>
+                    </form>
+                </div>
             </DraggableItem>
         )
     }
 
-
-
     handleChanges = e => {
         this.setState({
             [e.target.name]: e.target.value,
-            error: null
         })
+        this.props.setError(null)
     }
 
     // If the user clicks away from the input, reset it to what it originally was
     reset = e => {
         e.preventDefault()
-        setTimeout(() => this.setState({
-            regexString: String(this.props.regexInfo.regex)
-                .replace(/\//g, "")
-                .replace(/[\\{[(]/, "")
-                .replace(/[}\])]/, "")
-        }), 200)
+        setTimeout(
+            () =>
+                this.setState({
+                    regexString: String(this.props.regexInfo.regex)
+                        .replace(/\//g, "")
+                        .replace(/[\\{[(]/, "")
+                        .replace(/[}\])]/, "")
+                }),
+            200
+        )
     }
 
     submit = e => {
@@ -101,7 +102,6 @@ class DisplayCard extends React.Component {
             const regexNew = new RegExp(
                 `${regF + this.state.regexString + regB}`
             )
-            console.log(regexNew)
             // Update object with new regex, and send to action creators
             this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
             e.target.childNodes.forEach(elem => elem.blur())
@@ -109,8 +109,7 @@ class DisplayCard extends React.Component {
             const regLength =
                 `${regF + this.state.regexString + regB}`.length + 2
             const error = `${e}`.substring(43 + regLength)
-            this.setState({ error: error })
-            console.log(error)
+            this.props.setError(error)
         }
     }
 }

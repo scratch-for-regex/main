@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import TextAreaEdit from "./TextAreaEdit"
 
 import "./RegexTextArea.scss"
 
@@ -14,14 +13,21 @@ class RegexTextArea extends React.Component {
     render() {
         const regexOutput = this.createMarkup()
         return (
-            <div className="textarea">
-                <p dangerouslySetInnerHTML={regexOutput.text} />
-                <br />
-                <p>Total Matches found via regex: {regexOutput.count}</p>
-                <TextAreaEdit
-                    value={this.state.text}
-                    handleChanges={this.handleChanges}
-                />
+            <div className="bottom-section">
+                <div className="text-info">
+                    <h1>Text to Be Searched</h1>
+                    <h3>{regexOutput.count} Matches</h3>
+                </div>
+                <div className="textarea">
+                    <div 
+                        className="textarea-edit"
+                        suppressContentEditableWarning={true}
+                        contentEditable={true}
+                        name="text"
+                        onChange={this.handleChanges}
+                        dangerouslySetInnerHTML={regexOutput.text}
+                    />
+                </div>
             </div>
         )
     }
@@ -39,16 +45,13 @@ class RegexTextArea extends React.Component {
     regexTester = () => {
         console.log(this.props.regex)
         let count = 0
-        const regexText = this.state.text.replace(
-            this.props.regex,
-            match => {
-                console.log(match.length)
-                if (match.length !== 0) {
-                    count++
-                }
-                return `<span className="highlight">${match}</span>`
+        const regexText = this.state.text.replace(this.props.regex, match => {
+            console.log(match.length)
+            if (match.length !== 0) {
+                count++
             }
-        )
+            return `<span className="highlight">${match}</span>`
+        })
 
         // Returns an object containing the text with spans for regex highlighting, and a count for all regex matches.
         return { regexText, count }
