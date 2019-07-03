@@ -35,24 +35,41 @@ class DisplayCard extends React.Component {
                         {this.state.regexFront ? this.state.regexFront[0] : ""}
                     </span>
                     <input
+                        style={{width: this.state.regexString.length * 1.65 + "rem"}}
                         type="text"
                         name="regexString"
                         value={this.state.regexString}
                         onChange={this.handleChanges}
+                        onBlur={this.reset}
                         // readOnly={!this.props.regexInfo.acceptsInput}
                         readOnly={false} // REMOVE THIS CODE once we have sidebar components that DO accept input. This is only to test
                     />
                     <span>
                         {this.state.regexBack ? this.state.regexBack[0] : ""}
                     </span>
-                    <div className="tooltip">
+                    <div
+                        className={this.state.error ? "tooltip off" : "tooltip"}
+                    >
                         {this.props.regexInfo.purpose}
                     </div>
-                    <div className={this.state.error ? "tooltip error on" : "tooltip error"}>{this.state.error}</div>
+                    <div
+                        className={
+                            this.state.error
+                                ? "tooltip error on"
+                                : "tooltip error"
+                        }
+                    >
+                        {this.state.error}
+                    </div>
                 </form>
             </DraggableItem>
         )
     }
+
+    componentDidMount() {
+
+    }
+
     handleChanges = e => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -60,13 +77,25 @@ class DisplayCard extends React.Component {
         })
 
         // Adjust width of input form to be exactly the width of the display.
-        e.target.style.width = `${e.target.value.length * 1.65}rem`
+        // e.target.style.width = `${e.target.value.length * 1.65}rem`
+    }
+
+    // If the user clicks away from the input, reset it to what it originally was
+    reset = e => {
+        e.preventDefault()
+        this.setState({
+            regexString: String(this.props.regexInfo.regex)
+                .replace(/\//g, "")
+                .replace(/[\\{[(]/, "")
+                .replace(/[}\])]/, "")
+        })
+        // e.target.style.width = `${e.target.value.length * 1.65}rem`
     }
 
     submit = e => {
         e.preventDefault()
 
-        // User erased everything insid ethe input? Sounds like they want to remove the regex bit
+        // User erased everything inside the input? Sounds like they want to remove the regex bit
         if (this.state.regexString === "") {
             this.props.removeChar(this.props.regexInfo)
             return
@@ -76,16 +105,19 @@ class DisplayCard extends React.Component {
         const regF = this.state.regexFront ? this.state.regexFront[0] : ""
         const regB = this.state.regexBack ? this.state.regexBack[0] : ""
         try {
-            const regexNew = new RegExp(`${regF + this.state.regexString + regB}`)
+            const regexNew = new RegExp(
+                `${regF + this.state.regexString + regB}`
+            )
             console.log(regexNew)
             // Update object with new regex, and send to action creators
             this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
             e.target.childNodes.forEach(elem => elem.blur())
-        } catch(e) {
-            const regLength = `${regF + this.state.regexString + regB}`.length + 2
+        } catch (e) {
+            const regLength =
+                `${regF + this.state.regexString + regB}`.length + 2
             const error = `${e}`.substring(43 + regLength)
             this.setState({ error: error })
-            console.log(error);
+            console.log(error)
         }
     }
 }
