@@ -17,7 +17,9 @@ class RegexTextArea extends React.Component {
                 <div className="text-info">
                     <h1>Text to Be Searched</h1>
                     <h3>Feel free to add your own text</h3>
-                    <div className="matches">{regexOutput.count} Matches</div>
+                    <div className="matches">
+                        {regexOutput.count || "No "} Matches
+                    </div>
                 </div>
                 <div className="textarea">
                     <div
