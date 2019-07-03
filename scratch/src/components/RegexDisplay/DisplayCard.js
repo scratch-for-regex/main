@@ -4,7 +4,6 @@ import { removeChar, editChar } from "../../actions"
 import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
-
     // We need to turn the regex into a string, then find the front and back characters ( the "[" and "]" )
     // Very repetitive code. If there's a drier way to write this, I'm all down for it '' '
     state = {
@@ -17,7 +16,8 @@ class DisplayCard extends React.Component {
         regexString: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .replace(/[\\{[(]/, "")
-            .replace(/[}\])]/, "")
+            .replace(/[}\])]/, ""),
+        error: null
     }
 
     render() {
@@ -48,13 +48,15 @@ class DisplayCard extends React.Component {
                     <div className="tooltip">
                         {this.props.regexInfo.purpose}
                     </div>
+                    <div className={this.state.error ? "tooltip error on" : "tooltip error"}>{this.state.error}</div>
                 </form>
             </DraggableItem>
         )
     }
     handleChanges = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            error: null
         })
 
         // Adjust width of input form to be exactly the width of the display.
@@ -73,11 +75,18 @@ class DisplayCard extends React.Component {
         // Get the proper strings for the front and back of the regex bit
         const regF = this.state.regexFront ? this.state.regexFront[0] : ""
         const regB = this.state.regexBack ? this.state.regexBack[0] : ""
-        const regexNew = new RegExp(`${regF + this.state.regexString + regB}`)
-
-        // Update object with new regex, and send to action creators
-        this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
-        e.target.childNodes.forEach(elem => elem.blur())
+        try {
+            const regexNew = new RegExp(`${regF + this.state.regexString + regB}`)
+            console.log(regexNew)
+            // Update object with new regex, and send to action creators
+            this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
+            e.target.childNodes.forEach(elem => elem.blur())
+        } catch(e) {
+            const regLength = `${regF + this.state.regexString + regB}`.length + 2
+            const error = `${e}`.substring(43 + regLength)
+            this.setState({ error: error })
+            console.log(error);
+        }
     }
 }
 
