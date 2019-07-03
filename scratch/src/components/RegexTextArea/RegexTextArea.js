@@ -37,11 +37,15 @@ class RegexTextArea extends React.Component {
     //   The text as a regexText value in state,
     //   and a count to show how many regex matches there were.
     regexTester = () => {
+        console.log(this.props.regex)
         let count = 0
         const regexText = this.state.text.replace(
-            this.props.regex ? this.props.regex : /\s/g,
+            this.props.regex,
             match => {
-                count++
+                console.log(match.length)
+                if (match.length !== 0) {
+                    count++
+                }
                 return `<span className="highlight">${match}</span>`
             }
         )

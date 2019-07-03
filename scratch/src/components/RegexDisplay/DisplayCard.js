@@ -9,7 +9,7 @@ class DisplayCard extends React.Component {
     state = {
         regexFront: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
-            .match(/[\\{[(]/),
+            .match(/[\\{[(]/),  //  \ [ ( { 
         regexBack: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
             .match(/[}\])]/),
@@ -41,8 +41,7 @@ class DisplayCard extends React.Component {
                         value={this.state.regexString}
                         onChange={this.handleChanges}
                         onBlur={this.reset}
-                        // readOnly={!this.props.regexInfo.acceptsInput}
-                        readOnly={false} // REMOVE THIS CODE once we have sidebar components that DO accept input. This is only to test
+                        readOnly={!this.props.regexInfo.acceptsInputs}
                     />
                     <span>
                         {this.state.regexBack ? this.state.regexBack[0] : ""}
@@ -66,30 +65,24 @@ class DisplayCard extends React.Component {
         )
     }
 
-    componentDidMount() {
 
-    }
 
     handleChanges = e => {
         this.setState({
             [e.target.name]: e.target.value,
             error: null
         })
-
-        // Adjust width of input form to be exactly the width of the display.
-        // e.target.style.width = `${e.target.value.length * 1.65}rem`
     }
 
     // If the user clicks away from the input, reset it to what it originally was
     reset = e => {
         e.preventDefault()
-        this.setState({
+        setTimeout(() => this.setState({
             regexString: String(this.props.regexInfo.regex)
                 .replace(/\//g, "")
                 .replace(/[\\{[(]/, "")
                 .replace(/[}\])]/, "")
-        })
-        // e.target.style.width = `${e.target.value.length * 1.65}rem`
+        }), 200)
     }
 
     submit = e => {

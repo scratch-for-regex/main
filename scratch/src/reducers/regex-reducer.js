@@ -26,11 +26,13 @@ export default (state = initialState, action) => {
             }
 
         case EDIT_REGEX_CHAR:
-            const newSelectedChars = state.selectedCharacters.filter(regexBit => regexBit.id !== action.payload.id)
+            const regexIndex = state.selectedCharacters.findIndex(regexBit => regexBit.id === action.payload.id)
+            const newArray = [...state.selectedCharacters]
+            newArray.splice(regexIndex, 1, action.payload)
 
             return {
                 ...state,
-                selectedCharacters: [...newSelectedChars, action.payload]
+                selectedCharacters: newArray
             }
 
         default:
