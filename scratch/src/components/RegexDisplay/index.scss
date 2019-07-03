@@ -10,11 +10,22 @@
 
         .regex-char {
             position: relative;
+            display: flex;
+            align-items: flex-start;
             &:hover {
                 .tooltip {
-                    // display: block;
                     opacity: 1;
                 }
+            }
+
+            input {
+                box-sizing: border-box;
+                border: none;
+                font-family: monospace;
+                font-size: 3rem;
+                height: 3rem;
+                padding: 0;
+                width: 1.8rem;
             }
             
             .tooltip {
@@ -31,7 +42,6 @@
                 font-size: 1rem;
                 opacity: 0;
                 transition: opacity .1s ease-in-out;
-                // display: none;
             }
         }
     }
