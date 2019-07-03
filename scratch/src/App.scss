@@ -2,13 +2,6 @@
     height: 100vh;
     display: flex;
 
-    .sidebar {
-        width: 30%;
-        margin-right: 10px;
-        display: flex;
-        flex-flow: column;
-    }
-
     .main-content {
         display: flex;
         flex-flow: column;

@@ -10,9 +10,9 @@ const RegexDisplay = () => {
     const arrayRegex = useSelector(selectedChars)
 
     return (
-        <Dropzone>
-            <div className="regex-display">
-                <h3>Regex Display</h3>
+        <div className="regex-display">
+            <h3>Regex Display</h3>
+            <Dropzone>
                 <div className="display-card-container">
                     {" "}
                     <span>/</span>
@@ -24,9 +24,9 @@ const RegexDisplay = () => {
                     ))}
                     <span>/g</span>
                 </div>
-                <p>{formattedRegex}</p>
-            </div>
-        </Dropzone>
+            </Dropzone>
+            <p>{formattedRegex}</p>
+        </div>
     )
 }
 
