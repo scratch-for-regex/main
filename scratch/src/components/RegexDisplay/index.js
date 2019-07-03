@@ -10,6 +10,7 @@ const RegexDisplay = () => {
     const formattedRegex = useSelector(formatRegex)
     const arrayRegex = useSelector(selectedChars)
     const [error, setError] = useState(null)
+    const [purpose, setPurpose] = useState(" ")
 
     return (
         <div className="top-section">
@@ -28,6 +29,7 @@ const RegexDisplay = () => {
                                 key={regexPiece.id}
                                 regexInfo={regexPiece}
                                 setError={setError}
+                                setPurpose={setPurpose}
                             />
                         ))}
                         <span>/g</span>
@@ -35,6 +37,7 @@ const RegexDisplay = () => {
                 </Dropzone>
                 <div className="regex-n-tooltips">
                     <p>{formattedRegex}</p>
+                    <p className="tooltip">{purpose}</p>
                 </div>
             </div>
         </div>
