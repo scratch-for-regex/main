@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-
+import "./SideBar.scss"
 import SideBarRow from "./SideBarRow"
 
 class SideBar extends React.Component {
