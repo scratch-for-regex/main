@@ -16,11 +16,11 @@ class RegexTextArea extends React.Component {
             <div className="bottom-section">
                 <div className="text-info">
                     <h1>Text to Be Searched</h1>
-                    <he>Feel free to add your own text</he>
+                    <h3>Feel free to add your own text</h3>
                     <div className="matches">{regexOutput.count} Matches</div>
                 </div>
                 <div className="textarea">
-                    <div 
+                    <div
                         className="textarea-edit"
                         suppressContentEditableWarning={true}
                         contentEditable={true}
