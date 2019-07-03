@@ -5,9 +5,16 @@ import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
     state = {
-        regexFront: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[\\{[(]/),
-        regexBack: String(this.props.regexInfo.regex).replace(/\//g, "").match(/[}\])]/),
-        regexString: String(this.props.regexInfo.regex).replace(/\//g, "").replace(/[\\{[(]/, "").replace(/[}\])]/, "")
+        regexFront: String(this.props.regexInfo.regex)
+            .replace(/\//g, "")
+            .match(/[\\{[(]/),
+        regexBack: String(this.props.regexInfo.regex)
+            .replace(/\//g, "")
+            .match(/[}\])]/),
+        regexString: String(this.props.regexInfo.regex)
+            .replace(/\//g, "")
+            .replace(/[\\{[(]/, "")
+            .replace(/[}\])]/, "")
     }
 
     render() {
@@ -27,8 +34,10 @@ class DisplayCard extends React.Component {
                     </div>
                 </span> */}
                 <form className="regex-char" onSubmit={this.submit}>
-                    <span>{this.state.regexFront ? this.state.regexFront[0] : ""}</span>
-                    <input 
+                    <span>
+                        {this.state.regexFront ? this.state.regexFront[0] : ""}
+                    </span>
+                    <input
                         type="text"
                         name="regexString"
                         value={this.state.regexString}
@@ -36,7 +45,9 @@ class DisplayCard extends React.Component {
                         // readOnly={!this.props.regexInfo.acceptsInput}
                         readOnly={false}
                     />
-                    <span>{this.state.regexBack ? this.state.regexBack[0] : ""}</span>
+                    <span>
+                        {this.state.regexBack ? this.state.regexBack[0] : ""}
+                    </span>
                     <div className="tooltip">
                         {this.props.regexInfo.purpose}
                     </div>
@@ -48,6 +59,7 @@ class DisplayCard extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+        e.target.style.width = `${e.target.value.length * 1.65}rem`
     }
 
     submit = e => {
@@ -56,8 +68,8 @@ class DisplayCard extends React.Component {
             this.props.removeChar(this.props.regexInfo)
             return
         }
-        const regF = this.state.regexFront ? this.state.regexFront[0] : "";
-        const regB = this.state.regexBack ? this.state.regexBack[0] : "";
+        const regF = this.state.regexFront ? this.state.regexFront[0] : ""
+        const regB = this.state.regexBack ? this.state.regexBack[0] : ""
         const regex = new RegExp(`${regF + this.state.regexString + regB}`)
         console.log(regex)
     }
