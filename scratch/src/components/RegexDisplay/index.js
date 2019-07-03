@@ -15,14 +15,14 @@ const RegexDisplay = () => {
                 <h3>Regex Display</h3>
                 <div className="display-card-container">
                     {" "}
-                    /
+                    <span>/</span>
                     {arrayRegex.map(regexPiece => (
                         <DisplayCard
                             key={regexPiece.id}
                             regexInfo={regexPiece}
                         />
                     ))}
-                    /g
+                    <span>/g</span>
                 </div>
                 <p>{formattedRegex}</p>
             </div>
