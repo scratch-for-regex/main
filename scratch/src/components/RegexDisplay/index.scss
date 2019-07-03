@@ -70,42 +70,54 @@
             span {
                 font-size: 3rem;
             }
-
-            .regex-char {
+            .display-card {
                 position: relative;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                background: $primary-100;
-                box-shadow: 0 1px 8px $primary-500;
                 margin: 0 2.4rem;
-                border-left: 0.4rem solid $primary-600;
-                padding: 1.6rem;
-                cursor: grab;
-
-                &:active {
-                    cursor: grabbing;
+                background: $primary-100;
+                
+                img {
+                    width: 1.6rem;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    transform: translate(-16%, -16%);
                 }
 
-                span {
-                    font-family: $font-family-monospace;
-                    color: $primary-500;
-                    font-size: 3rem;
-                }
-
-                input {
-                    font-family: $font-family-monospace;
-                    color: $primary-500;
+                .regex-char {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
                     background: none;
-                    box-sizing: border-box;
-                    border: none;
-                    font-size: 3rem;
-                    height: 3.2rem;
-                    padding: 0;
-                    width: 1.65rem;
+                    box-shadow: 0 1px 8px $primary-500;
+                    border-left: 0.4rem solid $primary-600;
+                    padding: 1.6rem;
+                    cursor: grab;
 
-                    &:read-only:focus {
-                        outline: none;
+
+                    &:active {
+                        cursor: grabbing;
+                    }
+
+                    span {
+                        font-family: $font-family-monospace;
+                        color: $primary-500;
+                        font-size: 3rem;
+                    }
+
+                    input {
+                        font-family: $font-family-monospace;
+                        color: $primary-500;
+                        background: none;
+                        box-sizing: border-box;
+                        border: none;
+                        font-size: 3rem;
+                        height: 3.2rem;
+                        padding: 0;
+                        width: 1.65rem;
+
+                        &:read-only:focus {
+                            outline: none;
+                        }
                     }
                 }
             }
@@ -115,7 +127,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .tooltip, .regex {
+            .tooltip,
+            .regex {
                 display: block;
 
                 h3 {
@@ -124,8 +137,11 @@
                     color: $primary-600;
                     font-size: 3.2rem;
                 }
-                p, .tooltip>p {
-                    font-family: $font-family-primary;
+                p,
+                .tooltip > p {
+                    font-family: $font-family-condensed;
+                    letter-spacing: $letterspacing;
+                    color: $primary-500;
                     font-size: 2rem;
                 }
             }

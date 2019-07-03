@@ -2,6 +2,8 @@ import React from "react"
 import { DraggableItem } from "../shared"
 import { removeChar, editChar } from "../../actions"
 import { connect } from "react-redux"
+import dragIcon from "../../images/dots-mini.png"
+
 
 class DisplayCard extends React.Component {
     // We need to turn the regex into a string, then find the front and back characters ( the "[" and "]" )
@@ -61,6 +63,7 @@ class DisplayCard extends React.Component {
                                 : ""}
                         </span>
                     </form>
+                    <img src={dragIcon} alt="||" />
                 </div>
             </DraggableItem>
         )
