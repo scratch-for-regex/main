@@ -31,9 +31,10 @@ class DisplayCard extends React.Component {
             >
                 <div
                     className="display-card"
-                    onClick={() =>
+                    onClick={() => {
                         this.props.setPurpose(this.props.regexInfo.purpose)
-                    }
+                        this.props.setRegexString(String(this.props.regexInfo.regex).replace(/\//g, ""))
+                    }}
                 >
                     <form className="regex-char" onSubmit={this.submit}>
                         <span>
@@ -44,8 +45,9 @@ class DisplayCard extends React.Component {
                         <input
                             style={{
                                 width:
-                                    this.state.regexString.length * 1.65 + "rem"
+                                    this.state.regexString.length * 1.85 + "rem"
                             }}
+                            title={this.props.regexInfo.acceptsInputs ? "Click to edit" : null}
                             type="text"
                             name="regexString"
                             value={this.state.regexString}
