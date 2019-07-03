@@ -2,6 +2,8 @@ import React from "react"
 import { DraggableItem } from "../shared"
 import { removeChar, editChar } from "../../actions"
 import { connect } from "react-redux"
+import dragIcon from "../../images/dots-mini.png"
+
 
 class DisplayCard extends React.Component {
     // We need to turn the regex into a string, then find the front and back characters ( the "[" and "]" )
@@ -31,9 +33,10 @@ class DisplayCard extends React.Component {
             >
                 <div
                     className="display-card"
-                    onClick={() =>
+                    onClick={() => {
                         this.props.setPurpose(this.props.regexInfo.purpose)
-                    }
+                        this.props.setRegexString(String(this.props.regexInfo.regex).replace(/\//g, ""))
+                    }}
                 >
                     <form className="regex-char" onSubmit={this.submit}>
                         <span>
@@ -44,8 +47,9 @@ class DisplayCard extends React.Component {
                         <input
                             style={{
                                 width:
-                                    this.state.regexString.length * 1.65 + "rem"
+                                    this.state.regexString.length * 1.85 + "rem"
                             }}
+                            title={this.props.regexInfo.acceptsInputs ? "Click to edit" : null}
                             type="text"
                             name="regexString"
                             value={this.state.regexString}
@@ -59,6 +63,7 @@ class DisplayCard extends React.Component {
                                 : ""}
                         </span>
                     </form>
+                    <img src={dragIcon} alt="||" />
                 </div>
             </DraggableItem>
         )
