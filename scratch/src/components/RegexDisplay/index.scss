@@ -23,11 +23,14 @@
             }
 
             input {
+                align-self: flex-start;
                 box-sizing: border-box;
                 border: none;
                 font-family: monospace;
                 font-size: 3rem;
-                height: 3rem;
+                // Adding extra height and negative margins so brackets and braces will display properly.
+                height: 3.2rem;
+                margin-top: -0.2rem;
                 padding: 0;
                 width: 1.65rem;
 
@@ -37,9 +40,12 @@
             }
 
             .tooltip {
+                z-index: 2;
                 box-sizing: border-box;
                 position: absolute;
                 bottom: 90%;
+                left: 30%;
+                transform: translateX(-30%);
                 margin-top: -2rem;
                 background: rgba(0, 0, 0, 0.9);
                 box-shadow: 0 4px 7px gray;
@@ -50,6 +56,17 @@
                 font-size: 1rem;
                 opacity: 0;
                 transition: opacity 0.1s ease-in-out;
+
+                &.error {
+                    z-index: 3;
+                    background: rgba(255, 0, 0, 0.9);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: 100%;
+                    &.on {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
