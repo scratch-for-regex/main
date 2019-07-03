@@ -7,7 +7,7 @@ import { reduceRegex } from "../../selectors"
 
 const initialText = `We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.`
 
-const TextAreaView = ({ text, onClick, regex }) => {
+const TextAreaView = ({ text, onClick, regex, setCount }) => {
     // Runs our text through regex and stores:
     //   The text as a regexText value in state,
     //   and a count to show how many regex matches there were.
@@ -20,7 +20,7 @@ const TextAreaView = ({ text, onClick, regex }) => {
             }
             return `<span className="highlight">${match}</span>`
         })
-
+        setCount(count)
         // Returns an object containing the text with spans for regex highlighting, and a count for all regex matches.
         return {
             regexText,
@@ -97,6 +97,8 @@ const TextArea = ({ regex }) => {
                         onClick={didStartEditing}
                         text={text}
                         regex={regex}
+                        setCount={setCount}
+                        count={count}
                     />
                 )}
             </div>
