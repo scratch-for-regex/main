@@ -7,5 +7,5 @@ const state = {
 
 test("reduces regexes to single RegExp object", () => {
     const regex = reduceRegex(state)
-    expect(regex.source).toBe("(?:)\\w\\d\\s\\W\\D\\S")
+    expect(regex.source).toBe("(?:)\\w\\d\\s\\W\\D\\S[A-Z](evi)")
 })
