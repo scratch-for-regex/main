@@ -1,0 +1,29 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: $font-family-primary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-condensed;
+    font-weight: bold;
+}
+
+p {
+    font-weight: 400;
+    line-height: 3.6rem;
+}
