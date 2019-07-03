@@ -29,11 +29,15 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                <div className="display-card" onClick={() => this.props.setPurpose(this.props.regexInfo.purpose)}>
+                <div
+                    className="display-card"
+                    onClick={() =>
+                        this.props.setPurpose(this.props.regexInfo.purpose)
+                    }
+                >
                     <form className="regex-char" onSubmit={this.submit}>
                         <span>
-                            {this.state.regexFront &&
-                            this.state.regexFront[0] !== `\\`
+                            {this.state.regexFront
                                 ? this.state.regexFront[0]
                                 : ""}
                         </span>

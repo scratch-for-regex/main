@@ -22,9 +22,6 @@ class TextAreaEdit extends React.Component {
                     this.state.formOpen ? "textarea-edit on" : "textarea-edit"
                 }
             >
-                <button className="toggle-form" onClick={this.toggleForm}>
-                    {this.state.formOpen ? "Cancel" : "Edit Text"}
-                </button>
                 <form onSubmit={this.submit}>
                     <textarea
                         type="text"
@@ -34,7 +31,6 @@ class TextAreaEdit extends React.Component {
                         rows="12"
                         cols="80"
                     />
-                    <button type="submit">Add changes</button>
                 </form>
             </div>
         )
