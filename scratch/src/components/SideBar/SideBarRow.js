@@ -16,8 +16,8 @@ class SideBarRow extends React.Component {
         return (
             <DraggableItem didDrop={this.handleDidDrop}>
                 <div className="regex-card">
-                    <h3>{this.props.regexObj.regex.source}</h3>
-                    <p>{this.props.regexObj.purpose}</p>
+                    <h3 className="monospace">{this.props.regexObj.regex.source}</h3>
+                    <p className="monospace">{this.props.regexObj.purpose}</p>
                 </div>
             </DraggableItem>
         )
