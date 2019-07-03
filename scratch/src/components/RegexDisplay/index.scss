@@ -1,6 +1,6 @@
 .top-section {
     background: #808080;
-    height: 100%;
+    flex-grow: 1;
     width: 100%;
     box-sizing: border-box;
     padding: 5%;
@@ -37,7 +37,7 @@
                 }
                 
                 input {
-                    // align-self: flex-start;
+                    background: none;
                     box-sizing: border-box;
                     border: none;
                     font-family: monospace;
