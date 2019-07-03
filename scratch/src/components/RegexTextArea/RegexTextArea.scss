@@ -1,53 +1,59 @@
-* {
-    box-sizing: border-box;
-}
+@import "../../scss/variables";
 
 .bottom-section {
     height: 50%;
-    background: #e0e0e0;
+    background: $primary-100;
     display: flex;
-
+    padding: 4rem;
 
     .text-info {
-        width: 36%;
         padding: 2rem;
 
         h1 {
-            margin: 0 0 0.4rem;
+            font-family: $font-family-condensed;
+            color: $primary-600;
+            margin: 0 0 1rem;
+            font-size: 3.2rem;
+        }
+
+        h3 {
+            font-family: $font-family-primary;
+            color: $primary-600;
         }
 
         .matches {
-            background: blue;
-            color: white;
-            width: 6.4rem;
-            padding: 0.4rem;
-            margin-top: 2rem;
+            font-family: $font-family-primary;
+            font-size: 1.6rem;
+            background: $primary-400;
+            color: $primary-100;
+            width: 10.4rem;
+            padding: 0.8rem;
+            margin-top: 4rem;
             text-align: center;
         }
     }
 
     .textarea {
         width: 64%;
-        min-height: 12rem;
-        position: relative;
+        height: 100%;
         padding: 2rem;
+        padding-right: 0;
         overflow-x: hidden;
         display: flex;
         flex-flow: column;
         justify-content: space-between;
-
-        div {
-            font-family: monospace;
-            font-size: 1.2rem;
-
-            span {
-                background: darkgray;
-            }
-        }
-
+        
         .textarea-edit {
+            font-family: $font-family-monospace;
+            color: $primary-600;
             height: 100%;
-
+            width: 100%;
+            line-height: 2.8rem;
+            
+            
+            span {
+                background: $accent-100;
+            }
         }
     }
 }
