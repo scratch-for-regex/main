@@ -20,6 +20,8 @@ class RegexTextArea extends React.Component {
                 </div>
                 <div className="textarea">
                     <div 
+                        className="textarea-edit"
+                        suppressContentEditableWarning={true}
                         contentEditable={true}
                         name="text"
                         onChange={this.handleChanges}
