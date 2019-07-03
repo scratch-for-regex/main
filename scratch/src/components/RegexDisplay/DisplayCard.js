@@ -58,13 +58,6 @@ class DisplayCard extends React.Component {
                                 ? this.state.regexBack[0]
                                 : ""}
                         </span>
-                        <div
-                            className={
-                                this.state.error ? "tooltip off" : "tooltip"
-                            }
-                        >
-                            {this.props.regexInfo.purpose}
-                        </div>
                     </form>
                 </div>
             </DraggableItem>
@@ -74,8 +67,8 @@ class DisplayCard extends React.Component {
     handleChanges = e => {
         this.setState({
             [e.target.name]: e.target.value,
-            error: null
         })
+        this.props.setError(null)
     }
 
     // If the user clicks away from the input, reset it to what it originally was
@@ -109,7 +102,6 @@ class DisplayCard extends React.Component {
             const regexNew = new RegExp(
                 `${regF + this.state.regexString + regB}`
             )
-            console.log(regexNew)
             // Update object with new regex, and send to action creators
             this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
             e.target.childNodes.forEach(elem => elem.blur())
@@ -118,7 +110,6 @@ class DisplayCard extends React.Component {
                 `${regF + this.state.regexString + regB}`.length + 2
             const error = `${e}`.substring(43 + regLength)
             this.props.setError(error)
-            console.log(error)
         }
     }
 }
