@@ -1,26 +1,38 @@
 .sidebar {
     width: 40%;
-    background: #A0A0A0;
+    background: #BBBBBB;
     margin: 0;
     display: flex;
     flex-flow: column;
+    padding: 20px;
     
     .monospace {
         font-family: monospace;
     }
     
     .sidebar-list {
-        padding: 10px;
         overflow-y: auto;
         
         .regex-card {
+            cursor: grab;
             display: flex;
-            align-items: center;
+            flex-flow: column;
             box-sizing: border-box;
             background: white;
-            border-top: 0.5rem solid black;
-            margin: 10px 0;
+            border-left: 1rem solid black;
+            box-shadow: 0 0 10px gray;
+            margin: 30px 50px 30px 0;
+            padding-left: 10%;
 
+            h3 {
+                font-size: 2rem;
+                margin: 0.4rem 0 0;
+
+            }
+
+            p {
+                margin: 0.4rem 0;
+            }
         }
     }
 }
