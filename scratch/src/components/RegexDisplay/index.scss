@@ -6,12 +6,26 @@
     padding: 5%;
 
     .display-container {
+        height: 100%;
+        width: 100%;
         display: flex;
+        justify-content: space-between;
         flex-flow: column;
         background: red;
 
+        .header {
+            position: relative;
+
+            .regex-error {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+
         .display-card-container {
             font-family: monospace;
+            height: 4rem;
             display: flex;
             background: blue;
             

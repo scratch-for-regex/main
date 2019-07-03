@@ -15,29 +15,26 @@ const RegexDisplay = () => {
     return (
         <div className="top-section">
             <div className="display-container">
-                <div className="error-container">
+                <div className="header">
+                    <h1>Drag N Drop</h1>
+                    <h3>Drag over some characters from the left.</h3>
                     <ErrorCard error={error} />
                 </div>
-                <h1>Drag N Drop</h1>
-                <h3>Drag over some characters from the left.</h3>
                 <Dropzone>
                     <div className="display-card-container">
-                        {" "}
-                        <span>/</span>
-                        {arrayRegex.map(regexPiece => (
+                        {arrayRegex[0] ? arrayRegex.map(regexPiece => (
                             <DisplayCard
                                 key={regexPiece.id}
                                 regexInfo={regexPiece}
                                 setError={setError}
                                 setPurpose={setPurpose}
                             />
-                        ))}
-                        <span>/g</span>
+                        )) : "Add a Character"}
                     </div>
                 </Dropzone>
                 <div className="regex-n-tooltips">
-                    <p>{formattedRegex}</p>
                     <p className="tooltip">{purpose}</p>
+                    <p>{formattedRegex}</p>
                 </div>
             </div>
         </div>
