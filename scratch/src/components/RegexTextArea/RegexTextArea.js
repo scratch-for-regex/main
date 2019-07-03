@@ -16,10 +16,11 @@ class RegexTextArea extends React.Component {
             <div className="bottom-section">
                 <div className="text-info">
                     <h1>Text to Be Searched</h1>
-                    <h3>{regexOutput.count} Matches</h3>
+                    <h3>Feel free to add your own text</h3>
+                    <div className="matches">{regexOutput.count} Matches</div>
                 </div>
                 <div className="textarea">
-                    <div 
+                    <div
                         className="textarea-edit"
                         suppressContentEditableWarning={true}
                         contentEditable={true}
@@ -43,10 +44,8 @@ class RegexTextArea extends React.Component {
     //   The text as a regexText value in state,
     //   and a count to show how many regex matches there were.
     regexTester = () => {
-        console.log(this.props.regex)
         let count = 0
         const regexText = this.state.text.replace(this.props.regex, match => {
-            console.log(match.length)
             if (match.length !== 0) {
                 count++
             }
