@@ -16,3 +16,13 @@ export const removeChar = regexObj => dispatch => {
         payload: regexObj
     })
 }
+
+
+export const EDIT_REGEX_CHAR = "EDIT_REGEX_CHAR"
+
+export const editChar = regexObj => dispatch => {
+    dispatch({
+        type: EDIT_REGEX_CHAR,
+        payload: regexObj
+    })
+}

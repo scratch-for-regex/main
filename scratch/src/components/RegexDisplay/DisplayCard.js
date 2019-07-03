@@ -1,9 +1,12 @@
 import React from "react"
 import { DraggableItem } from "../shared"
-import { removeChar } from "../../actions"
+import { removeChar, editChar } from "../../actions"
 import { connect } from "react-redux"
 
 class DisplayCard extends React.Component {
+
+    // We need to turn the regex into a string, then find the front and back characters ( the "[" and "]" )
+    // Very repetitive code. If there's a drier way to write this, I'm all down for it '' '
     state = {
         regexFront: String(this.props.regexInfo.regex)
             .replace(/\//g, "")
@@ -27,12 +30,6 @@ class DisplayCard extends React.Component {
                     }
                 }}
             >
-                {/* <span className="regex-char">
-                    {String(this.props.regexInfo.regex).replace(/\//g, "")}
-                    <div className="tooltip">
-                        {this.props.regexInfo.purpose}
-                    </div>
-                </span> */}
                 <form className="regex-char" onSubmit={this.submit}>
                     <span>
                         {this.state.regexFront ? this.state.regexFront[0] : ""}
@@ -43,7 +40,7 @@ class DisplayCard extends React.Component {
                         value={this.state.regexString}
                         onChange={this.handleChanges}
                         // readOnly={!this.props.regexInfo.acceptsInput}
-                        readOnly={false}
+                        readOnly={false} // REMOVE THIS CODE once we have sidebar components that DO accept input. This is only to test
                     />
                     <span>
                         {this.state.regexBack ? this.state.regexBack[0] : ""}
@@ -59,19 +56,28 @@ class DisplayCard extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+
+        // Adjust width of input form to be exactly the width of the display.
         e.target.style.width = `${e.target.value.length * 1.65}rem`
     }
 
     submit = e => {
         e.preventDefault()
+
+        // User erased everything insid ethe input? Sounds like they want to remove the regex bit
         if (this.state.regexString === "") {
             this.props.removeChar(this.props.regexInfo)
             return
         }
+
+        // Get the proper strings for the front and back of the regex bit
         const regF = this.state.regexFront ? this.state.regexFront[0] : ""
         const regB = this.state.regexBack ? this.state.regexBack[0] : ""
-        const regex = new RegExp(`${regF + this.state.regexString + regB}`)
-        console.log(regex)
+        const regexNew = new RegExp(`${regF + this.state.regexString + regB}`)
+
+        // Update object with new regex, and send to action creators
+        this.props.editChar({ ...this.props.regexInfo, regex: regexNew })
+        e.target.childNodes.forEach(elem => elem.blur())
     }
 }
 
@@ -81,5 +87,5 @@ const mstp = state => {
 
 export default connect(
     mstp,
-    { removeChar }
+    { removeChar, editChar }
 )(DisplayCard)

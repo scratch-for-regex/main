@@ -30,12 +30,16 @@
                 height: 3rem;
                 padding: 0;
                 width: 1.65rem;
+
+                &:read-only:focus {
+                    outline: none;
+                }
             }
 
             .tooltip {
                 box-sizing: border-box;
                 position: absolute;
-                top: 0;
+                bottom: 90%;
                 margin-top: -2rem;
                 background: rgba(0, 0, 0, 0.9);
                 box-shadow: 0 4px 7px gray;
