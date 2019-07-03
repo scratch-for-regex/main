@@ -17,7 +17,6 @@ class DisplayCard extends React.Component {
             .replace(/\//g, "")
             .replace(/[\\{[(]/, "")
             .replace(/[}\])]/, ""),
-        error: null
     }
 
     render() {
@@ -50,15 +49,6 @@ class DisplayCard extends React.Component {
                         className={this.state.error ? "tooltip off" : "tooltip"}
                     >
                         {this.props.regexInfo.purpose}
-                    </div>
-                    <div
-                        className={
-                            this.state.error
-                                ? "tooltip error on"
-                                : "tooltip error"
-                        }
-                    >
-                        {this.state.error}
                     </div>
                 </form>
             </DraggableItem>
@@ -109,7 +99,7 @@ class DisplayCard extends React.Component {
             const regLength =
                 `${regF + this.state.regexString + regB}`.length + 2
             const error = `${e}`.substring(43 + regLength)
-            this.setState({ error: error })
+            this.props.setError(error)
             console.log(error)
         }
     }

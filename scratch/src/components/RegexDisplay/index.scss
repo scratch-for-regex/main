@@ -1,84 +1,90 @@
-.regex-display {
+.top-section {
     background: #808080;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    padding: 5px;
-    border: 2px solid black;
+    padding: 5%;
 
-    .display-card-container {
-        font-family: monospace;
+    .display-container {
         display: flex;
-        
-        span {
-            font-size: 3rem;
-        }
+        flex-flow: column;
+        background: red;
 
-        .regex-char {
-            position: relative;
+        .display-card-container {
+            font-family: monospace;
             display: flex;
-            align-items: center;
-            &:hover {
-                .tooltip {
-                    opacity: 1;
-                    visibility: visible;
-                }
-            }
-
+            background: blue;
             
             span {
-                font-family: monospace;
                 font-size: 3rem;
             }
-            
-            input {
-                // align-self: flex-start;
-                box-sizing: border-box;
-                border: none;
-                font-family: monospace;
-                font-size: 3rem;
-                height: 3.2rem;
-                padding: 0;
-                width: 1.65rem;
-                
-                &:read-only:focus {
-                    outline: none;
-                }
-            }
-            
-            .tooltip {
-                z-index: 2;
-                display: block;
-                box-sizing: border-box;
-                position: absolute;
-                bottom: 90%;
-                left: 30%;
-                transform: translateX(-30%);
-                margin-top: -2rem;
-                background: rgba(0, 0, 0, 0.9);
-                box-shadow: 0 4px 7px gray;
-                border-radius: 5px;
-                border-bottom-right-radius: 0;
-                padding: 2px;
-                color: white;
-                font-size: 1rem;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.1s ease-in-out;
-                &.off {
-                    display: none;
-                }
-                
-                &.error {
-                    z-index: 3;
-                    background: rgba(255, 0, 0, 0.9);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    bottom: 100%;
-                    visibility: hidden;
-                    &.on {
+
+            .regex-char {
+                position: relative;
+                display: flex;
+                align-items: center;
+                &:hover {
+                    .tooltip {
                         opacity: 1;
                         visibility: visible;
+                    }
+                }
+
+                
+                span {
+                    font-family: monospace;
+                    font-size: 3rem;
+                }
+                
+                input {
+                    // align-self: flex-start;
+                    box-sizing: border-box;
+                    border: none;
+                    font-family: monospace;
+                    font-size: 3rem;
+                    height: 3.2rem;
+                    padding: 0;
+                    width: 1.65rem;
+                    
+                    &:read-only:focus {
+                        outline: none;
+                    }
+                }
+                
+                .tooltip {
+                    z-index: 2;
+                    display: block;
+                    box-sizing: border-box;
+                    position: absolute;
+                    bottom: 90%;
+                    left: 30%;
+                    transform: translateX(-30%);
+                    margin-top: -2rem;
+                    background: rgba(0, 0, 0, 0.9);
+                    box-shadow: 0 4px 7px gray;
+                    border-radius: 5px;
+                    border-bottom-right-radius: 0;
+                    padding: 2px;
+                    color: white;
+                    font-size: 1rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.1s ease-in-out;
+                    &.off {
+                        display: none;
+                    }
+                    
+                    &.error {
+                        z-index: 3;
+                        background: rgba(255, 0, 0, 0.9);
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: 100%;
+                        visibility: hidden;
+                        &.on {
+                            opacity: 1;
+                            visibility: visible;
+                        }
                     }
                 }
             }
